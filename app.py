@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 load_dotenv()
+import traceback
 
 #LLM : input_messageをプロンプトに渡す処理
 from langchain_openai import ChatOpenAI
@@ -49,6 +50,7 @@ if st.button("実行"):
             result = llm.invoke(messages)
             st.write(f"専門家の回答：{result.content}")
         except Exception as e:
+            st.code(traceback.format_exc())
             st.error(f"エラーが発生しました: {str(e)}")
             st.error("API キーを確認するか、ネットワーク接続を確認してください。")
    
